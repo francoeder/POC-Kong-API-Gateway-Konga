@@ -1,0 +1,35 @@
+version: "3.7"
+
+# docker network create kong-net
+networks:
+  kong-net:
+    external: true
+
+services:
+
+  servicea:
+    image: service-a
+    build:
+      context: ./ServiceA
+    ports:
+      - 8080:5000
+    networks:
+      - kong-net
+
+  serviceb1:
+    image: service-b1
+    build:
+      context: ./ServiceB1
+    ports:
+      - 8081:5000
+    networks:
+      - kong-net
+  
+  serviceb2:
+    image: service-b2
+    build:
+      context: ./ServiceB2
+    ports:
+      - 8082:5000
+    networks:
+      - kong-net
